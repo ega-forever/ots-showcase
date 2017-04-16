@@ -1,0 +1,30 @@
+.list-group-item(v-for="item in items")
+  .d-flex.w-100.justify-content-between
+    h5.mb-1 {{item.title}}
+    small 3 days ago
+  .form.project_form(v-if="item.view")
+    form
+      .row
+        .col-md-12
+          .md-form
+            span Title
+            input(type="text", v-model="item.title")
+      .row
+        .col-md-12
+          .md-form
+            span Basic project info
+            textarea.md-textarea(v-model="item.description")
+      .row
+        .col-md-6
+          .md-form
+            span Stock price
+            input.form-control(type='number', v-model="item.stock_price")
+        .col-md-6
+          .md-form
+            span Suggested price
+            input.form-control(type='number', v-model="item.suggested_price")
+  .actions
+    button.btn.btn-default(v-on:click="item.view = true", v-if="!item.view") View
+    button.btn.btn-default(v-on:click="item.view = false", v-if="item.view") Close
+    button.btn.btn-primary(v-on:click="edit(item)", v-if="item.view") Save
+    button.btn.btn-danger(v-on:click="delete(item)", v-if="item.view") Delete

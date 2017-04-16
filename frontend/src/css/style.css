@@ -1,0 +1,12 @@
+nav.page_nav {
+    width: 100%;
+}
+
+nav.page_nav > ul.pagination {
+    margin: auto;
+    padding-top: 5px;
+}
+
+.project_form {
+    width: 100%;
+}

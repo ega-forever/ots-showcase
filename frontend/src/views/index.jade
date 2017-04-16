@@ -1,0 +1,63 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(http-equiv='x-ua-compatible', content='ie=edge')
+    title Material Design Bootstrap
+    link(href='libs/lib.css', rel='stylesheet')
+    link(href='css/style.css', rel='stylesheet')
+    style(rel='stylesheet').
+      /* TEMPLATE STYLES */
+      main {
+        padding-top: 3rem;
+        padding-bottom: 2rem;
+      }
+
+      .widget-wrapper {
+        padding-bottom: 2rem;
+        border-bottom: 1px solid #e0e0e0;
+        margin-bottom: 2rem;
+      }
+
+      .extra-margins {
+        margin-top: 1rem;
+        margin-bottom: 2.5rem;
+      }
+
+      .divider-new {
+        margin-top: 0;
+      }
+
+      .navbar {
+        background-color: #414a5c;
+      }
+
+      footer.page-footer {
+        background-color: #414a5c;
+        margin-top: 2rem;
+      }
+  body
+    header
+      include partials/navigation
+    main#app
+      .container(v-if="show_main")
+        .row
+          .col-lg-12
+            form.form-inline.waves-effect.waves-light
+              input.form-control(type='text', placeholder='Search', v-model="search")
+            .list-group
+              include partials/project_list_item_form
+
+            nav.page_nav.pagination
+              ul.pagination.pagination-lg
+                li.page-item(v-for="page in pageCount")
+                  a.page-link(href='#', v-on:click="goPage", v-bind:data-page="page") {{page}}
+
+
+      .container(v-if="!show_main")
+        .row
+          .col-lg-6.col-lg-offset-3
+            include partials/new_project
+
+    include partials/footer

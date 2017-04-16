@@ -1,0 +1,23 @@
+.form.project_form
+  form
+    .row
+      .col-md-12
+        .md-form
+          span Title
+          input(type="text", v-model="new_item.title")
+    .row
+      .col-md-12
+        .md-form
+          span Basic project info
+          textarea.md-textarea(v-model="new_item.description")
+    .row
+      .col-md-6
+        .md-form
+          span Stock price
+          input.form-control(type='number', v-model="new_item.stock_price")
+      .col-md-6
+        .md-form
+          span Suggested price
+          input.form-control(type='number', v-model="new_item.suggested_price")
+.actions
+  button.btn.btn-primary(v-on:click="save(new_item)") Save
