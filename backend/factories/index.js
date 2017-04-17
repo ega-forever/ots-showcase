@@ -1,23 +1,10 @@
-var UserSchemaMessageFactory = require('./messages/models/UserSchemaMessageFactory'),
-  AuthMessageFactory = require('./messages/ctrl/AuthMessageFactory'),
-  GenericMessageFactory = require('./messages/GenericMessageFactory'),
-  VersionAppMessageFactory = require('./messages/services/VersionAppMessageFactory'),
-  UserCreateMessageFactory = require('./messages/services/UserCreateMessageFactory'),
-  MailAliasMessageFactory = require('./messages/services/MailAliasMessageFactory.js');
+/**
+ * @type {factory}
+ * @description rootpoint of factory's module
+ */
 
 module.exports = {
   messages: {
-    models: {
-      UserSchema: UserSchemaMessageFactory
-    },
-    ctrl: {
-      Auth: AuthMessageFactory
-    },
-    services: {
-      VersionAppMessageFactory: VersionAppMessageFactory,
-      UserCreateMessageFactory: UserCreateMessageFactory,
-      MailAliasMessageFactory: MailAliasMessageFactory
-    },
-    Generic: GenericMessageFactory
+    Generic: require('./messages/GenericMessageFactory')
   }
 };

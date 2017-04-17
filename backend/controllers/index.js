@@ -1,7 +1,9 @@
-const AuthCtrl = require('./AuthCtrl.js'),
-  ProjectCtrl = require('./ProjectCtrl.js');
+/**
+ * @type {factory}
+ * @description rootpoint of controllers module
+ */
 
 module.exports = {
-  AuthCtrl,
-  ProjectCtrl
+  AuthCtrl: require('./AuthCtrl.js'),
+  ProjectCtrl: require('./ProjectCtrl.js')
 };

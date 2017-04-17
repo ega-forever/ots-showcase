@@ -1,3 +1,8 @@
+/**
+ * @type {model}
+ * @description user's model
+ */
+
 const Sequelize = require('sequelize');
 
 module.exports = (sequelize) => {

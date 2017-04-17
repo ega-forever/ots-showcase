@@ -1,3 +1,7 @@
+/**
+ * @description builds up frontend
+ */
+
 const gulp = require('gulp'),
   jade = require('gulp-jade'),
   stylus = require('gulp-stylus'),
@@ -9,7 +13,7 @@ const gulp = require('gulp'),
   modifyCssUrls = require('gulp-modify-css-urls'),
   browserify = require('gulp-browserify');
 
-gulp.task('stylus', ()=> {
+gulp.task('stylus', () => {
   gulp.src('./src/css/*.css')
     .pipe(stylus({
       use: ['nib']
@@ -20,16 +24,16 @@ gulp.task('stylus', ()=> {
     .pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task('stylus-lib', ()=> {
+gulp.task('stylus-lib', () => {
   gulp.src([
-      './src/libs/font-awesome/css/font-awesome.css',
-      './src/libs/MDBootstrap/css/bootstrap.min.css',
-      './src/libs/MDBootstrap/css/mdb.min.css'
+    './src/libs/font-awesome/css/font-awesome.css',
+    './src/libs/MDBootstrap/css/bootstrap.min.css',
+    './src/libs/MDBootstrap/css/mdb.min.css'
 
-    ])
+  ])
     .pipe(concat('lib.css'))
     .pipe(modifyCssUrls({
-      modify: (url, filePath)=> {
+      modify: (url, filePath) => {
         console.log(url);
         return url.replace(new RegExp(/(\.\.)\//, 'g'), '')
           .replace('font/', 'fonts/');
@@ -39,26 +43,26 @@ gulp.task('stylus-lib', ()=> {
     .pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task('fonts', ()=> {
+gulp.task('fonts', () => {
   gulp.src('./src/css/fonts/*')
     .pipe(gulp.dest('./dist/css/fonts'))
     .pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task('fonts-lib', ()=> {
+gulp.task('fonts-lib', () => {
   gulp.src([
-      './src/libs/font-awesome/fonts/*',
-      './src/libs/MDBootstrap/font/**/*'
-    ])
+    './src/libs/font-awesome/fonts/*',
+    './src/libs/MDBootstrap/font/**/*'
+  ])
     .pipe(gulp.dest('./dist/libs/fonts'))
     .pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task('js', ()=> {
+gulp.task('js', () => {
   gulp.src([
-      './src/js/**/*.js',
-      './src/js/*.js'
-    ])
+    './src/js/**/*.js',
+    './src/js/*.js'
+  ])
     .pipe(babel({
       presets: [
         ['es2015', {modules: false}]
@@ -74,22 +78,23 @@ gulp.task('js', ()=> {
     .pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task("libs", ()=>
+gulp.task("libs", () =>
   gulp.src([
-      './src/libs/MDBootstrap/js/jquery-3.1.1.min.js',
-      './src/libs/MDBootstrap/js/tether.min.js',
-      './src/libs/MDBootstrap/js/bootstrap.min.js',
-      './src/libs/MDBootstrap/js/mdb.js',
-      './src/libs/lodash/dist/lodash.js',
-      './src/libs/vue/dist/vue.min.js',
-      './src/libs/vue-resource/dist/vue-resource.min.js',
-      './src/libs/vue-router/dist/vue-router.min.js'
+    './src/libs/MDBootstrap/js/jquery-3.1.1.min.js',
+    './src/libs/MDBootstrap/js/tether.min.js',
+    './src/libs/MDBootstrap/js/bootstrap.min.js',
+    './src/libs/MDBootstrap/js/mdb.js',
+    './src/libs/lodash/dist/lodash.js',
+    './src/libs/vue/dist/vue.min.js',
+    './src/libs/vue-resource/dist/vue-resource.min.js',
+    './src/libs/vue-router/dist/vue-router.min.js',
+    './src/libs/moment/moment.js'
   ])
     .pipe(concat('lib.js'))
     .pipe(gulp.dest('./dist/libs'))
 );
 
-gulp.task('jade', ()=> {
+gulp.task('jade', () => {
   gulp.src('./src/views/*.jade')
     .pipe(jade({
       pretty: true
@@ -99,13 +104,7 @@ gulp.task('jade', ()=> {
     .pipe(browserSync.reload({stream: true}))
 });
 
-gulp.task('locales', ()=> {
-  gulp.src('./src/js/locales/*')
-    .pipe(gulp.dest('./dist/js/locales'))
-    .pipe(browserSync.reload({stream: true}))
-});
-
-gulp.task('browser-sync', ()=> {
+gulp.task('browser-sync', () => {
   browserSync.init({
     server: {
       baseDir: "./dist"
@@ -113,15 +112,14 @@ gulp.task('browser-sync', ()=> {
   });
 });
 
-gulp.task('watch', ()=> {
+gulp.task('watch', () => {
 
   gulp.watch('./src/css/*.css', ['stylus', browserSync.reload]);
   gulp.watch(['./src/views/*.jade', './src/views/partials/*.jade', './src/views/partials/**/*.jade'], ['jade', browserSync.reload]);
   gulp.watch(['./src/js/**/*.js', './src/js/*.js'], ['js', browserSync.reload]);
-  gulp.watch('./src/js/locales/*', ['locales', 'js', browserSync.reload]);
 });
 
-gulp.task('build', ['stylus', 'jade', 'js', 'libs', 'locales', 'fonts', 'stylus-lib', 'fonts-lib']);
+gulp.task('build', ['stylus', 'jade', 'js', 'libs', 'fonts', 'stylus-lib', 'fonts-lib']);
 
 gulp.task('start', ['browser-sync', 'build', 'watch']);
 

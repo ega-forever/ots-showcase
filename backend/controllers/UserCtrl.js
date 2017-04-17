@@ -1,3 +1,9 @@
+/**
+ * @type {controller}
+ * @description user's controllers - perform CRUD operations on data
+ */
+
+
 const UserModel = require('../models').schemas.UserSchema;
 
 module.exports = {

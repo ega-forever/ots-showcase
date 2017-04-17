@@ -1,5 +1,9 @@
-const messages = require('../factories').messages,
-  services = require('../services'),
+/**
+ * @type {service}
+ * @description - registers all routes for express
+ */
+
+const services = require('../services'),
   express = require('express');
 
 module.exports = (app, passport) => {
@@ -18,7 +22,7 @@ module.exports = (app, passport) => {
     res.header('Access-Control-Allow-Headers', (req.headers['access-control-request-headers']) ? req.headers['access-control-request-headers'] : 'x-requested-with');
     res.header('Access-Control-Allow-Methods', (req.headers['access-control-request-method']) ? req.headers['access-control-request-method'] : responseSettings.AccessControlAllowMethods);
 
-    if ('OPTIONS' == req.method) {
+    if ('OPTIONS' === req.method) {
       res.send(200);
     }
     else {

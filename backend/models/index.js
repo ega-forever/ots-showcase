@@ -1,8 +1,14 @@
+/**
+ * @type {factory}
+ * @description rootpoint of model's module
+ */
+
 const ProjectSchema = require('./ProjectSchema'),
   UserSchema = require('./UserSchema'),
   Sequelize = require('sequelize'),
+  config = require('../config'),
   _ = require('lodash'),
-  sequelize = new Sequelize('mysql://root:root@localhost:32774/test');
+  sequelize = new Sequelize(config.database.uri);
 
 let schemas = {
   ProjectSchema: ProjectSchema(sequelize),
@@ -17,7 +23,7 @@ module.exports = {
         _.chain(schemas).values()
           .forEach(schema =>
             new Promise(res =>
-              schema.sync().success(res)
+              schema.sync()
             )
           )
           .value()

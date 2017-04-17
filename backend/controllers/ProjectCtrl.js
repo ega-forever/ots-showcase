@@ -1,3 +1,8 @@
+/**
+ * @type {controller}
+ * @description project's controllers - perform CRUD operations on data
+ */
+
 const ProjectModel = require('../models').schemas.ProjectSchema;
 
 module.exports = {

@@ -1,11 +1,14 @@
+/**
+ * @type {service}
+ * @description creates new project
+ */
+
 const ProjectCtrl = require('../../controllers').ProjectCtrl,
-  messages = require('../../factories').messages;
+  _ = require('lodash');
 
 module.exports = (req, res) => {
 
-  console.log(req.body);
-
-  ProjectCtrl.create(req.body)
+  ProjectCtrl.create(_.set(req.body, 'user_id', req.user.id))
     .then(data => {
       res.send(data);
     })

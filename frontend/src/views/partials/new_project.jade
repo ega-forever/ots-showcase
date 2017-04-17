@@ -20,4 +20,4 @@
           span Suggested price
           input.form-control(type='number', v-model="new_item.suggested_price")
 .actions
-  button.btn.btn-primary(v-on:click="save(new_item)") Save
+  button.btn.btn-primary(v-on:click="save(new_item)", :disabled="!validateItem(new_item)") Save

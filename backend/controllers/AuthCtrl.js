@@ -1,3 +1,8 @@
+/**
+ * @type {controller}
+ * @description Authentication controller - handles oauth + bearer flows
+ */
+
 const config = require('../config'),
   GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
   UserModel = require('../models').schemas.UserSchema,
@@ -18,11 +23,7 @@ module.exports = function(passport) {
         }
       })
         .then(user => {
-
-          console.log(user);
-
           return done(null, user, {scope: 'all'})
-
         })
 
     })

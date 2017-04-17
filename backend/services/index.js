@@ -1,3 +1,8 @@
+/**
+ * @type {factory}
+ * @description rootpoint of service's module
+ */
+
 module.exports = {
   Projects: {
     create: require('./projects/CreateProjectInterceptor'),
