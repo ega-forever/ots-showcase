@@ -39,7 +39,7 @@ const app = new Vue({
       item.view = !item.view;
     },
     edit: function(item) {
-      this.$http.put('http://localhost:8080/api/projects', item)
+      this.$http.put('/api/projects', item)
         .then(response => {
           console.log(response);
         });
@@ -47,7 +47,7 @@ const app = new Vue({
     },
     remove: function(item) {
       console.log('!!!');
-      this.$http.delete(`http://localhost:8080/api/projects?id=${item.id}`)
+      this.$http.delete(`/api/projects?id=${item.id}`)
         .then(response => {
           console.log(response);
           this.notes = _.reject(this.notes, {id: item.id});
@@ -56,7 +56,7 @@ const app = new Vue({
     },
     save: function() {
 
-      this.$http.post('http://localhost:8080/api/projects', this.new_item)
+      this.$http.post('/api/projects', this.new_item)
         .then(response => {
           console.log(response);
           location.hash = '#list';
@@ -71,7 +71,7 @@ const app = new Vue({
     },
     getItems: function() {
 
-      this.$http.get('http://localhost:8080/api/projects')
+      this.$http.get('/api/projects')
         .then(response => {
           this.notes = response.body
             .map(item => _.set(item, 'view', false));
