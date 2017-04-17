@@ -80,7 +80,7 @@ const app = new Vue({
     },
     validateItem: function(item) {
       return _.get(item, 'description', '').length > 0 &&
-        _.get(item, 'title', '') > 0 &&
+        _.get(item, 'title', '').length > 0 &&
           item.stock_price > 0 &&
           item.suggested_price > 0
     }
