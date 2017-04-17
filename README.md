@@ -1,4 +1,4 @@
-# Video streaming demo for solarjob
+# showcase for ots
 
 A showcase for ots. Simple project's manager with oauth implicit + bearer flow.
 
